@@ -5,7 +5,10 @@ const axios = require("axios");
 app.use(express.json());
 
 axios.get("https://www.freetogame.com/api/games").then((res) => {
-  console.log(res.data);
+  const html = res.data;
+  app.get("/", (req, res) => {
+    res.json(html);
+  });
 });
 
 const port = process.env.PORT || 3001;
